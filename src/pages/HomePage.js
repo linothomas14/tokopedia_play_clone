@@ -5,13 +5,12 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 
 function HomePage() {
-
-    const baseURL = "http://localhost:5000/videos";
+    const baseURL = process.env.REACT_APP_BASE_URL;
+    const videoURL = baseURL + "videos";
 
     const [videos, setVideos] = useState([]);
 
     function renderVideosResults() {
-        console.log(videos[0]._id);
         return (
             <>
                 {
@@ -24,7 +23,7 @@ function HomePage() {
     }
 
     useEffect(() => {
-        axios.get(baseURL).then((response) => {
+        axios.get(videoURL).then((response) => {
             setVideos(response.data);
         });
 

@@ -1,7 +1,7 @@
 import React from 'react'
 
 function VideoContainer({ title, video_url }) {
-    console.log("title bro" + title)
+
     return (
         <>
             <div className=' h-[450px] flex flex-col  items-center'>
@@ -12,7 +12,6 @@ function VideoContainer({ title, video_url }) {
                     src={video_url}
                     title="Youtube Player"
                     className='rounded-xl'
-                    frameborder="0"
                     allowFullScreen
                 />
             </div>

@@ -2,7 +2,6 @@ import React from 'react'
 
 function VideoCard({ _id, title, thumbnail_url }) {
 
-    console.log("Props: ", _id, title, thumbnail_url);
     return (
         <>
             <a href={'/videos/' + _id}>

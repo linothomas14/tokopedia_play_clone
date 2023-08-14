@@ -4,7 +4,10 @@ import axios from 'axios';
 
 function ChatContainer({ video_id }) {
 
-    const commentURL = "http://localhost:5000/videos/" + video_id + "/comments";
+    const baseURL = process.env.REACT_APP_BASE_URL;
+
+    const commentURL = baseURL + "videos/" + video_id + "/comments";
+    const commentSubmitURL = baseURL + "comments";
 
     const [comments, setComments] = useState([]);
     const [usernameInput, setUsernameInput] = useState("");
@@ -24,9 +27,9 @@ function ChatContainer({ video_id }) {
 
     const getCommentData = async () => {
         try {
-            console.log('Fetching comments...');
+
             const response = await axios.get(commentURL);
-            console.log('Response:', response.data);
+
             setComments(response.data);
         } catch (err) {
             console.error('Error fetching data:', err);
@@ -47,7 +50,7 @@ function ChatContainer({ video_id }) {
 
         formRef.current.reset()
 
-        axios.post('http://localhost:5000/comments', commentData)
+        axios.post(commentSubmitURL, commentData)
             .then(function (response) {
                 console.log(response);
             })
@@ -98,9 +101,9 @@ function ChatContainer({ video_id }) {
 
             <form action="" ref={formRef} className='flex flex-col border-t-2 border-gray-600' onSubmit={sendComment}>
 
-                <input type="text" placeholder="Username" name="username" onChange={handleUsernameChange} class="input w-full max-w-xs text-sm" />
+                <input type="text" placeholder="Username" name="username" onChange={handleUsernameChange} className="input w-full max-w-xs text-sm" />
 
-                <input type="text" placeholder="Your comment" name="comment" onChange={handleCommentChange} class="input w-full max-w-xs text-sm" />
+                <input type="text" placeholder="Your comment" name="comment" onChange={handleCommentChange} className="input w-full max-w-xs text-sm" />
 
                 <button className='bg-blue-700 rounded-md p-2'>
                     <h2 className='text-sm font-bold text-white p-0'>Send</h2>

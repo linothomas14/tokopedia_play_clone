@@ -8,9 +8,10 @@ import Navbar from '../components/Navbar';
 function VideoDetailPage() {
     const params = useParams()
 
-    const getVideoURL = "http://localhost:5000/videos/" + params.id;
-    const getProductsURL = "http://localhost:5000/videos/" + params.id + "/products";
-    console.log(getProductsURL)
+    const baseURL = process.env.REACT_APP_BASE_URL;
+
+    const getVideoURL = baseURL + "videos/" + params.id;
+    const getProductsURL = baseURL + "videos/" + params.id + "/products";
 
     const [video, setVideo] = useState({});
     const [products, setProducts] = useState([]);
@@ -32,7 +33,7 @@ function VideoDetailPage() {
     }, []);
 
     function renderProductsResults() {
-        // console.log(products)
+
         return (
             <>
                 {
